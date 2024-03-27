@@ -2,14 +2,21 @@
 import inquirer from "inquirer";
 import chalk from "chalk";
 import chalkAnimation from "chalk-animation";
+function passValidation(pass) {
+    if (Number(pass) !== 1234) {
+        return "Invalid Password";
+    }
+    return true;
+}
+await inquirer.prompt({
+    type: "input",
+    name: "userPin",
+    message: "Please Enter your PIN ",
+    validate: passValidation,
+});
 async function main() {
     let balance = 100000;
     let answers = await inquirer.prompt([
-        {
-            type: "number",
-            name: "userPin",
-            message: "Please Enter your PIN "
-        },
         {
             type: "list",
             name: 'transactPreferences',
